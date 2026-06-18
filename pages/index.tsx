@@ -20,6 +20,8 @@ interface Config {
   captions: string[];
   closing: string;
   reasons?: string[];
+  musicAutoPlay?: boolean;
+  musicVolume?: number;
 }
 
 const themeColors: Record<string, { bg: string; accent: string; text: string; glow: string }> = {
@@ -96,12 +98,12 @@ function MusicButton({ src, title }: { src: string; title: string }) {
 
   const toggle = () => {
     if (!audioRef.current) return;
-    if (playing) {
+    if (!audioRef.current.paused) {
       audioRef.current.pause();
     } else {
       audioRef.current.play();
     }
-    setPlaying(!playing);
+    setPlaying((p) => !p);
   };
 
   return (
@@ -112,6 +114,8 @@ function MusicButton({ src, title }: { src: string; title: string }) {
         className="w-14 h-14 rounded-full bg-gold-accent text-dark-luxury flex items-center justify-center shadow-lg"
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
+        aria-label={playing ? "Pause music" : "Play music"}
+        aria-pressed={playing}
       >
         {playing ? (
           <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -238,6 +242,7 @@ function PhotoGrid({ photos, captions }: { photos: string[]; captions: string[] 
                 src={`/${photo}`}
                 alt={captions[i] || `Foto ${i + 1}`}
                 className="w-full h-full object-cover"
+                loading="lazy"
               />
               {captions[i] && (
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4">
@@ -418,23 +423,6 @@ export default function HomePage() {
 
           <ClosingSection closing={config.closing} recipient={config.sender} />
 
-          {/* Pricing Section */}
-          <section className="py-16 px-6 bg-gradient-to-b from-dark-luxury to-deep-black">
-            <div className="max-w-md mx-auto text-center">
-              <p className="text-elegant-white/60 mb-2">Mulai dari</p>
-              <p className="text-5xl font-bold text-gold-accent mb-4">Rp 65K</p>
-              <p className="text-elegant-white/50 text-sm mb-6">Harga premium untuk pengalaman tak terlupakan</p>
-              <a
-                href="https://wa.me/6282320114535?text=Halo%2C%20saya%20tertarik%20dengan%20EverLetter%20Bloom!"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-gold-accent text-dark-luxury px-8 py-4 rounded-full font-bold text-lg hover:bg-gold-accent/90 transition-colors"
-              >
-                Pesan via WhatsApp
-              </a>
-            </div>
-          </section>
-
           <a
             href="https://wa.me/6282320114535?text=Halo%2C%20saya%20tertarik%20dengan%20EverLetter!"
             target="_blank"
@@ -458,10 +446,14 @@ export default function HomePage() {
                 });
               } else {
                 navigator.clipboard.writeText(window.location.href);
-                alert('Link disalin ke clipboard!');
+                const toast = document.createElement('div');
+                toast.className = 'fixed top-6 left-1/2 -translate-x-1/2 z-[100] bg-dark-luxury text-elegant-white px-6 py-3 rounded-full shadow-lg text-sm font-medium';
+                toast.textContent = 'Link disalin ke clipboard!';
+                document.body.appendChild(toast);
+                setTimeout(() => toast.remove(), 3000);
               }
             }}
-            className="fixed bottom-6 left-6 z-50 bg-elegant-white/20 backdrop-blur-sm text-white px-4 py-3 rounded-full shadow-lg hover:bg-elegant-white/30 transition-colors flex items-center gap-2"
+            className="fixed bottom-20 left-6 z-50 bg-elegant-white/20 backdrop-blur-sm text-white px-4 py-3 rounded-full shadow-lg hover:bg-elegant-white/30 transition-colors flex items-center gap-2"
             aria-label="Bagikan"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
