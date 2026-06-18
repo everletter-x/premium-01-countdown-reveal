@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import Head from "next/head";
 import {
   motion,
   AnimatePresence,
@@ -411,17 +410,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-warm-white">
-      <Head>
-        <title>EverLetter - Bloom | Ucapan yang Terasa Lebih Spesial</title>
-        <meta name="description" content="Bloom - Hadiah digital premium untuk orang tersayang. Ucapan personal, foto, dan momen indah yang dibungkus dalam pengalaman digital yang memukau." />
-        <meta property="og:title" content="EverLetter - Bloom" />
-        <meta property="og:description" content="Hadiah digital premium untuk orang tersayang" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="EverLetter - Bloom" />
-        <meta name="twitter:description" content="Hadiah digital premium untuk orang tersayang" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
       <AnimatePresence mode="wait">
         {phase === "loading" && <LoadingScreen key="loading" />}
         {phase === "countdown" && (
