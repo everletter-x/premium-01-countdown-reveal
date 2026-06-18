@@ -435,6 +435,23 @@ export default function HomePage() {
 
           <ClosingSection closing={config.closing} recipient={config.sender} />
 
+          {/* Pricing Section */}
+          <section className="py-16 px-6 bg-gradient-to-b from-dark-luxury to-deep-black">
+            <div className="max-w-md mx-auto text-center">
+              <p className="text-elegant-white/60 mb-2">Mulai dari</p>
+              <p className="text-5xl font-bold text-gold-accent mb-4">Rp 65K</p>
+              <p className="text-elegant-white/50 text-sm mb-6">Harga premium untuk pengalaman tak terlupakan</p>
+              <a
+                href="https://wa.me/6282320114535?text=Halo%2C%20saya%20tertarik%20dengan%20EverLetter%20Bloom!"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-gold-accent text-dark-luxury px-8 py-4 rounded-full font-bold text-lg hover:bg-gold-accent/90 transition-colors"
+              >
+                Pesan via WhatsApp
+              </a>
+            </div>
+          </section>
+
           <a
             href="https://wa.me/6282320114535?text=Halo%2C%20saya%20tertarik%20dengan%20EverLetter!"
             target="_blank"
