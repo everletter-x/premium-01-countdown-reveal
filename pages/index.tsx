@@ -269,8 +269,8 @@ function PhotoGrid({ photos, captions }: { photos: string[]; captions: string[] 
   );
 }
 
-function AlasanSayang({ sender }: { sender: string }) {
-  const reasons = [
+function AlasanSayang({ sender, reasons }: { sender: string; reasons: string[] }) {
+  const displayReasons = reasons.length > 0 ? reasons : [
     "Senyummu yang selalu mencerahkan hariku",
     "Caramu mendengarkanku tanpa menghakimi",
     "Keberanianmu menghadapi setiap tantangan",
@@ -290,7 +290,7 @@ function AlasanSayang({ sender }: { sender: string }) {
           Alasan {sender} Sayang Kamu
         </motion.h2>
         <div className="space-y-6">
-          {reasons.map((reason, i) => (
+          {displayReasons.map((reason, i) => (
             <motion.div
               key={i}
               className="flex items-start gap-4"
@@ -429,7 +429,7 @@ export default function HomePage() {
             <PhotoGrid photos={config.photos} captions={config.captions} />
           )}
 
-          <AlasanSayang sender={config.sender} />
+          <AlasanSayang sender={config.sender} reasons={config.reasons || []} />
 
           <MemorySection captions={config.captions} />
 
