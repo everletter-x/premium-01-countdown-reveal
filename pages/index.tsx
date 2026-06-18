@@ -33,7 +33,7 @@ const themeColors: Record<string, { bg: string; accent: string; text: string; gl
 function LoadingScreen() {
   return (
     <motion.div
-      className="fixed inset-0 flex items-center justify-center bg-dark-luxury z-50"
+      className="fixed inset-0 flex items-center justify-center bg-warm-white z-50"
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8 }}
     >
@@ -44,7 +44,7 @@ function LoadingScreen() {
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
         />
         <motion.p
-          className="text-elegant-white text-lg font-light tracking-wide max-w-md"
+          className="text-dark-luxury text-lg font-light tracking-wide max-w-md"
           initial={{ opacity: 0 }}
           animate={{ opacity: [0.4, 1, 0.4] }}
           transition={{ duration: 2, repeat: Infinity }}
@@ -70,7 +70,7 @@ function CountdownScreen({ onComplete }: { onComplete: () => void }) {
 
   return (
     <motion.div
-      className="fixed inset-0 flex items-center justify-center bg-deep-black z-50"
+      className="fixed inset-0 flex items-center justify-center bg-pink-soft z-50"
       exit={{ opacity: 0 }}
       transition={{ duration: 0.6 }}
     >
@@ -128,7 +128,7 @@ function MusicButton({ src, title }: { src: string; title: string }) {
         )}
       </motion.button>
       <motion.div
-        className="absolute -top-8 right-0 bg-dark-luxury text-elegant-white text-xs px-3 py-1 rounded-full whitespace-nowrap opacity-0 pointer-events-none"
+        className="absolute -top-8 right-0 bg-warm-white text-dark-luxury text-xs px-3 py-1 rounded-full whitespace-nowrap opacity-0 pointer-events-none"
         whileHover={{ opacity: 1 }}
       >
         {title}
@@ -267,7 +267,7 @@ function AlasanSayang({ sender, reasons }: { sender: string; reasons: string[] }
   ];
 
   return (
-    <motion.section className="min-h-screen bg-dark-luxury px-6 py-20 flex items-center">
+    <motion.section className="min-h-screen bg-warm-white px-6 py-20 flex items-center">
       <div className="max-w-2xl mx-auto">
         <motion.h2
           className="text-3xl font-bold text-gold-accent text-center mb-12"
@@ -290,7 +290,7 @@ function AlasanSayang({ sender, reasons }: { sender: string; reasons: string[] }
               <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gold-accent text-dark-luxury flex items-center justify-center text-sm font-bold">
                 {i + 1}
               </span>
-              <p className="text-elegant-white text-lg leading-relaxed">{reason}</p>
+              <p className="text-dark-luxury text-lg leading-relaxed">{reason}</p>
             </motion.div>
           ))}
         </div>
@@ -339,7 +339,7 @@ function MemorySection({ captions }: { captions: string[] }) {
 
 function ClosingSection({ closing, recipient }: { closing: string; recipient: string }) {
   return (
-    <motion.section className="min-h-screen bg-deep-black flex items-center justify-center px-6">
+    <motion.section className="min-h-screen bg-pink-soft flex items-center justify-center px-6">
       <div className="text-center max-w-lg">
         <motion.div
           className="w-16 h-16 mx-auto mb-8 border-2 border-gold-accent rounded-full flex items-center justify-center"
@@ -351,7 +351,7 @@ function ClosingSection({ closing, recipient }: { closing: string; recipient: st
           <span className="text-gold-accent text-2xl">♥</span>
         </motion.div>
         <motion.p
-          className="text-elegant-white text-xl md:text-2xl leading-relaxed mb-8"
+          className="text-dark-luxury text-xl md:text-2xl leading-relaxed mb-8"
           initial={{ y: 20, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
@@ -366,7 +366,7 @@ function ClosingSection({ closing, recipient }: { closing: string; recipient: st
           transition={{ delay: 0.6 }}
         >
           <p className="text-gold-accent text-sm tracking-widest uppercase mb-2">With love,</p>
-          <p className="text-elegant-white text-lg">{recipient}</p>
+          <p className="text-dark-luxury text-lg">{recipient}</p>
         </motion.div>
       </div>
     </motion.section>
@@ -388,7 +388,7 @@ export default function HomePage() {
 
   if (configLoading || !config) {
     return (
-      <div className="min-h-screen bg-dark-luxury">
+      <div className="min-h-screen bg-warm-white">
         <LoadingScreen />
       </div>
     );
@@ -447,7 +447,7 @@ export default function HomePage() {
               } else {
                 navigator.clipboard.writeText(window.location.href);
                 const toast = document.createElement('div');
-                toast.className = 'fixed top-6 left-1/2 -translate-x-1/2 z-[100] bg-dark-luxury text-elegant-white px-6 py-3 rounded-full shadow-lg text-sm font-medium';
+                toast.className = 'fixed top-6 left-1/2 -translate-x-1/2 z-[100] bg-warm-white text-dark-luxury px-6 py-3 rounded-full shadow-lg text-sm font-medium';
                 toast.textContent = 'Link disalin ke clipboard!';
                 document.body.appendChild(toast);
                 setTimeout(() => toast.remove(), 3000);
