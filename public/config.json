@@ -1,13 +1,13 @@
 {
-  "recipient": "Nabila",
-  "sender": "Rizky",
-  "title": "Selamat Ulang Tahun",
-  "message": "Terima kasih sudah hadir di hidupku.\n\nKalau boleh jujur, kamu adalah bagian paling indah dari hariku.\n\nSetiap hari denganmu adalah berkat yang aku tidak pernah terduga.",
-  "photos": ["photo1.jpg", "photo2.jpg"],
+  "recipient": "",
+  "sender": "",
+  "title": "",
+  "message": "",
+  "photos": [],
   "theme": "pink",
-  "music": "song.mp3",
-  "musicTitle": "我们的歌",
+  "music": "",
+  "musicTitle": "",
   "template": "premium-01",
-  "captions": ["Momen indah", "Senyummu"],
-  "closing": "Selamat ulang tahun, sayangku."
+  "captions": [],
+  "closing": ""
 }

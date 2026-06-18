@@ -253,7 +253,7 @@ function PhotoGrid({ photos, captions }: { photos: string[]; captions: string[] 
             >
               <img
                 src={`/${photo}`}
-                alt={captions[i] || `Photo ${i + 1}`}
+                alt={captions[i] || `Foto ${i + 1}`}
                 className="w-full h-full object-cover"
               />
               {captions[i] && (
