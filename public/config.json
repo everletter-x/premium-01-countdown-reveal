@@ -9,5 +9,18 @@
   "musicTitle": "",
   "template": "premium-01",
   "captions": [],
-  "closing": ""
+  "closing": "",
+  "_example": {
+    "recipient": "Kamu",
+    "sender": "Aku",
+    "title": "Untuk Kamu, Hari Spesial Ini",
+    "message": "Di hari yang istimewa ini, aku ingin kamu tahu satu hal: keberadaanmu adalah hadiah terindah yang pernah aku terima. Setiap momen bersamamu adalah babak baru dalam cerita cinta kita yang tak pernah ingin aku akhiri.",
+    "captions": [
+      "Momen pertama kita bertemu",
+      "Senyummu yang selalu kurindukan",
+      "Saat kita tertawa bersama",
+      "Cinta kita, abadi selamanya"
+    ],
+    "closing": "Selamat ulang tahun, cintaku. Aku sayang kamu lebih dari kata-kata."
+  }
 }
