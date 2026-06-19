@@ -1,41 +1,79 @@
-export const themeTokens = {
-  premium: {
-    pinkSoft: '#F8BBD0',
-    rose: '#E91E63',
-    lavender: '#E6E6FA',
-    warmWhite: '#FDF5E6',
+export const THEME_IDS = [
+  'pink', 'rose', 'lavender', 'warm-white',
+  'ultra-cinematic', 'ultra-signature',
+] as const;
+export type ThemeId = (typeof THEME_IDS)[number];
+
+export interface ThemeTokens {
+  bg: string;
+  cardBg: string;
+  accent: string;
+  text: string;
+  glow: string;
+  divider: string;
+}
+
+const themeMap: Record<ThemeId, ThemeTokens> = {
+  pink: {
+    bg: 'bg-gradient-to-br from-[#0F0811] via-[#1A0B1A] to-[#250E20]',
+    cardBg: 'bg-white/[0.06] border-white/[0.12]',
+    accent: 'text-[#F6B3D0]',
+    text: 'text-[#F9F5F6]',
+    glow: 'shadow-pink-500/20',
+    divider: 'bg-white/20',
   },
-  ultra: {
-    darkLuxury: '#1A1A1A',
-    goldAccent: '#D4AF37',
-    deepBlack: '#0A0A0A',
-    elegantWhite: '#F8F6F3',
-    starlightGlow: '#FFF8DC',
+  rose: {
+    bg: 'bg-gradient-to-br from-[#1A080A] via-[#2D1216] to-[#1A080A]',
+    cardBg: 'bg-white/[0.06] border-white/[0.12]',
+    accent: 'text-[#FDA4AF]',
+    text: 'text-[#FFE4E6]',
+    glow: 'shadow-rose-500/20',
+    divider: 'bg-white/20',
   },
-  spacing: {
-    xs: '0.25rem',
-    sm: '0.5rem',
-    md: '1rem',
-    lg: '1.5rem',
-    xl: '2rem',
-    '2xl': '3rem',
+  lavender: {
+    bg: 'bg-gradient-to-br from-[#080711] via-[#0D0A1C] to-[#150F2A]',
+    cardBg: 'bg-white/[0.06] border-white/[0.12]',
+    accent: 'text-[#C5B3E6]',
+    text: 'text-[#F5F3F7]',
+    glow: 'shadow-purple-500/20',
+    divider: 'bg-white/20',
   },
-  typography: {
-    fontFamily: {
-      sans: ['Inter', 'system-ui', 'sans-serif'],
-      serif: ['Georgia', 'Cambria', 'Times New Roman', 'serif'],
-    },
+  'warm-white': {
+    bg: 'bg-gradient-to-br from-[#12110F] via-[#1E1915] to-[#2B2118]',
+    cardBg: 'bg-white/[0.06] border-white/[0.12]',
+    accent: 'text-[#E6C29E]',
+    text: 'text-[#FBFBF9]',
+    glow: 'shadow-stone-500/20',
+    divider: 'bg-white/20',
+  },
+  'ultra-cinematic': {
+    bg: 'bg-gradient-to-br from-[#000000] via-[#050505] to-[#0A0A0A]',
+    cardBg: 'bg-white/[0.04] border-yellow-600/20',
+    accent: 'text-[#D4AF37]',
+    text: 'text-[#F8F6F3]',
+    glow: 'shadow-yellow-600/20',
+    divider: 'bg-yellow-600/30',
+  },
+  'ultra-signature': {
+    bg: 'bg-gradient-to-br from-[#05050A] via-[#0A0A14] to-[#0F0F19]',
+    cardBg: 'bg-white/[0.04] border-white/[0.08]',
+    accent: 'text-[#C8C8D2]',
+    text: 'text-[#F0F0F5]',
+    glow: 'shadow-slate-400/10',
+    divider: 'bg-white/10',
   },
 };
 
-export function getThemeClasses(theme: string): { bg: string; text: string; accent: string } {
-  const themes: Record<string, { bg: string; text: string; accent: string }> = {
-    pink: { bg: 'bg-pink-50', text: 'text-gray-900', accent: 'text-rose' },
-    rose: { bg: 'bg-rose-50', text: 'text-gray-900', accent: 'text-rose' },
-    lavender: { bg: 'bg-purple-50', text: 'text-gray-900', accent: 'text-purple-600' },
-    'warm-white': { bg: 'bg-orange-50', text: 'text-gray-900', accent: 'text-orange-600' },
-    'dark-luxury': { bg: 'bg-[#1A1A1A]', text: 'text-[#F8F6F3]', accent: 'text-[#D4AF37]' },
-    'gold-accent': { bg: 'bg-black', text: 'text-[#F8F6F3]', accent: 'text-[#D4AF37]' },
-  };
-  return themes[theme] || themes.pink;
+export function getThemeClasses(theme: string): ThemeTokens {
+  return themeMap[theme as ThemeId] || themeMap.pink;
+}
+
+export function setThemeAttribute(theme: string) {
+  if (typeof document !== 'undefined') {
+    document.documentElement.setAttribute('data-theme', theme);
+  }
+}
+
+export function isValidTheme(theme: string): theme is ThemeId {
+  return THEME_IDS.includes(theme as ThemeId);
 }
