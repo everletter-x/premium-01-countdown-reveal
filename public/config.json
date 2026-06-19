@@ -2,12 +2,12 @@
   "recipient": "Sena",
   "sender": "Aku",
   "title": "Untuk Sena, Hari Spesial Ini",
-  "message": "Di hari yang istimewa ini, aku ingin kamu tahu satu hal: keberadaanmu adalah hadiah terindah yang pernah aku terima.",
+  "message": "Di hari yang istimewa ini, aku ingin kamu tahu satu hal: keberadaanmu adalah hadiah terindah yang pernah aku terima.\n\nSetiap pagi ketika aku membuka mata, hal pertama yang ada di pikiranku adalah kamu. Bukan karena kewajiban, bukan karena kebiasaan, tapi karena hatiku sudah terbiasa berdetak untukmu. Kamu telah menjadi bagian tak terpisahkan dari setiap tarikan nafasku.\n\nAku teringat pertama kali kita bertemu — waktu seolah berhenti sejenak. Dunia yang begitu luas, tapi takdir memilih kita untuk saling menemukan. Sejak saat itu, setiap hari bersamamu menjadi babak baru dalam cerita cinta kita yang tak pernah habis untuk diceritakan.\n\nKamu bukan sekadar orang yang aku cintai. Kamu adalah rumah yang selalu kutuju, pelabuhan yang menenangkan gelombang di dadaku, dan bintang yang menerangi jalan tergelapku. Setiap hari bersamamu adalah pengingat bahwa kebahagiaan sejati tersembunyi dalam hal-hal kecil.\n\nAku belajar darimu tentang kesabaran, tentang bagaimana mencintai tanpa syarat, tentang bagaimana menjadi versi terbaik dari diriku sendiri. Kau melihatku — bukan hanya apa yang kulakukan, tapi siapa aku sebenarnya, dengan segala kekurangan dan kelebihanku.",
   "photos": [
-    "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80",
-    "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&q=80",
-    "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&q=80",
-    "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=800&q=80"
+    "photo-1.jpg",
+    "photo-2.jpg",
+    "photo-3.jpg",
+    "photo-4.jpg"
   ],
   "theme": "pink",
   "music": "music/romantic-piano.mp3",
@@ -19,12 +19,14 @@
     "Keberanianmu menghadapi setiap tantangan",
     "Setiap momen kecil bersamamu yang berarti"
   ],
-  "closing": "Selamat ulang tahun, Sena. Aku sayang kamu lebih dari kata-kata.",
+  "closing": "Selamat ulang tahun, Sena. Aku sayang kamu lebih dari kata-kata yang bisa kutuliskan. Semoga setiap langkahmu selalu ditemani kebahagiaan, dan semoga aku bisa terus menjadi orang yang membuat senyummu tak pernah pudar.",
   "reasons": [
-    "Senyummu yang selalu mencerahkan hariku",
-    "Caramu mendengarkanku tanpa menghakimi",
-    "Keberanianmu menghadapi setiap tantangan",
-    "Ketulusan hatimu yang tak pernah berubah",
-    "Setiap momen kecil bersamamu yang berarti"
+    "Senyummu yang selalu mencerahkan hariku bahkan di hari tersulit sekalipun",
+    "Caramu mendengarkanku tanpa menghakimi, memberiku ruang untuk menjadi diri sendiri",
+    "Keberanianmu menghadapi setiap tantangan dengan keteguhan yang menginspirasiku",
+    "Ketulusan hatimu yang tak pernah berubah, bahkan setelah semua waktu yang telah kita lewati",
+    "Setiap momen kecil bersamamu yang ternyata menjadi kenangan paling berharga dalam hidupku",
+    "Caramu memelukku ketika dunia terasa terlalu berat untuk ditanggung sendiri",
+    "Tawamu yang menular, yang mampu mengubah hari terburukku menjadi hari terbaik"
   ]
 }
