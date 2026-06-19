@@ -714,7 +714,7 @@ function ClosingSection({ closing, sender, theme }: { closing: string; sender: s
         >
           <div className="w-12 h-[1px] mx-auto mb-8" style={{ background: `linear-gradient(90deg, transparent, ${colors.accentHex}40, transparent)` }} />
           <p className={`text-[10px] tracking-[0.4em] uppercase mb-3 ${colors.accent} font-semibold`}>
-            With All My Heart
+            Dengan Seluruh Hati
           </p>
           <p className="font-serif-premium text-lg md:text-xl text-white font-light tracking-wide">
             {sender}
