@@ -7,6 +7,7 @@ import {
 } from "framer-motion";
 import Head from 'next/head';
 import { useConfigLoader } from "../shared";
+import { RippleEffect } from "../components/RippleEffect";
 
 interface Config {
   recipient: string;
@@ -368,6 +369,101 @@ function DropCapParagraph({ text, delay = 0, accentHex }: { text: string; delay?
   );
 }
 
+/* ── Floating Rose Scroll Indicator ── */
+function FloatingRose({ accentHex, scrollYProgress }: { accentHex: string; scrollYProgress: any }) {
+  const rotate = useTransform(scrollYProgress, [0, 0.3], [0, 180]);
+  const scale = useTransform(scrollYProgress, [0, 0.15, 0.3], [1, 0.8, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 0.15, 0.3], [1, 0.5, 0]);
+  const petalOpen = useTransform(scrollYProgress, [0, 0.15], [0, 1]);
+
+  return (
+    <motion.div
+      style={{ opacity, scale }}
+      className="absolute bottom-12 left-1/2 -translate-x-1/2"
+    >
+      <motion.div
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+        className="flex flex-col items-center gap-3"
+      >
+        <span className="text-[10px] tracking-[0.3em] uppercase text-white/25">Gulir</span>
+        {/* Blooming rose SVG */}
+        <motion.svg
+          viewBox="0 0 40 40"
+          className="w-8 h-8"
+          style={{ rotate }}
+        >
+          {/* Outer petals bloom open */}
+          <motion.path
+            d="M20 4C12 4 4 12 4 20c0 8 8 16 16 16s16-8 16-16C36 12 28 4 20 4z"
+            fill={accentHex}
+            fillOpacity={0.15}
+            stroke={accentHex}
+            strokeWidth={0.5}
+            style={{ scale: petalOpen }}
+          />
+          {/* Inner petals */}
+          <motion.path
+            d="M20 8C14 8 8 14 8 20c0 6 6 12 12 12s12-6 12-12C32 14 26 8 20 8z"
+            fill={accentHex}
+            fillOpacity={0.1}
+            style={{ scale: useTransform(petalOpen, [0, 1], [0.5, 1]) }}
+          />
+          {/* Center */}
+          <circle cx="20" cy="20" r="4" fill={accentHex} fillOpacity={0.25} />
+          <circle cx="20" cy="20" r="2" fill={accentHex} fillOpacity={0.4} />
+        </motion.svg>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+/* ── Bloom Burst ── */
+function BloomBurst({ accentHex }: { accentHex: string }) {
+  const petals = useMemo(() =>
+    [...Array(8)].map((_, i) => ({
+      angle: (i * 45) * Math.PI / 180,
+      distance: 80 + (i % 3) * 40,
+      size: 4 + (i % 3) * 3,
+      delay: i * 0.06,
+    })), []);
+
+  return (
+    <div className="absolute inset-0 pointer-events-none z-10 overflow-hidden">
+      {petals.map((p, i) => (
+        <motion.div
+          key={i}
+          className="absolute"
+          style={{
+            left: "50%",
+            top: "50%",
+            width: p.size * 3,
+            height: p.size * 4,
+          }}
+          initial={{ x: 0, y: 0, opacity: 0, scale: 0, rotate: 0 }}
+          whileInView={{
+            x: Math.cos(p.angle) * p.distance,
+            y: Math.sin(p.angle) * p.distance,
+            opacity: [0, 0.6, 0],
+            scale: [0, 1, 0.5],
+            rotate: [0, 360],
+          }}
+          viewport={{ once: true, margin: "-20%" }}
+          transition={{ duration: 1.5, delay: p.delay, ease: "easeOut" }}
+        >
+          <svg viewBox="0 0 20 28" fill="none" className="w-full h-full">
+            <path
+              d="M10 0C10 0 20 10 20 18C20 24 15.5 28 10 28C4.5 28 0 24 0 18C0 10 10 0 10 0Z"
+              fill={accentHex}
+              fillOpacity={0.4}
+            />
+          </svg>
+        </motion.div>
+      ))}
+    </div>
+  );
+}
+
 /* ── Hero with 3D scroll + rose petals ── */
 function HeroSection({ recipient, title, theme }: { recipient: string; title: string; theme: string }) {
   const colors = themeColors[theme] || themeColors.pink;
@@ -385,6 +481,7 @@ function HeroSection({ recipient, title, theme }: { recipient: string; title: st
       transition={{ duration: 1.2 }}
     >
       <RosePetals color={colors.accentHex} />
+      <BloomBurst accentHex={colors.accentHex} />
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[70vw] h-[70vw] rounded-full opacity-15 blur-[140px] pointer-events-none"
         style={{ background: `radial-gradient(circle, ${colors.accentHex}, transparent)` }}
@@ -440,21 +537,7 @@ function HeroSection({ recipient, title, theme }: { recipient: string; title: st
           {title}
         </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.5, duration: 1 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            className="flex flex-col items-center gap-2"
-          >
-            <span className="text-[10px] tracking-[0.3em] uppercase text-white/25">Gulir</span>
-            <div className="w-[1px] h-8" style={{ background: `linear-gradient(180deg, ${colors.accentHex}30, transparent)` }} />
-          </motion.div>
-        </motion.div>
+        <FloatingRose accentHex={colors.accentHex} scrollYProgress={scrollYProgress} />
       </motion.div>
     </motion.section>
   );
@@ -640,12 +723,19 @@ function PhotoGrid({ photos, captions, theme }: { photos: string[]; captions: st
               style={{ transformPerspective: 1000 }}
               whileHover={{ scale: 1.02, rotateY: i % 2 === 0 ? 2 : -2, transition: { duration: 0.4 } }}
             >
-              <img
-                src={`/${photo}`}
-                alt={captions[i] || `Foto ${i + 1}`}
-                className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                loading="lazy"
-              />
+              <motion.div
+                className="w-full h-full"
+                style={{ willChange: 'transform' }}
+                animate={{ scale: [1, 1.08, 1] }}
+                transition={{ duration: 12 + i * 2, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <img
+                  src={`/${photo}`}
+                  alt={captions[i] || `Foto ${i + 1}`}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </motion.div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
               <div className="absolute inset-0 rounded-[20px] border border-white/[0.08] group-hover:border-white/[0.2] transition-colors duration-500" />
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
@@ -772,7 +862,8 @@ export default function HomePage() {
           rel="stylesheet"
         />
       </Head>
-      <div className="bg-[#0F0811] text-white antialiased selection:bg-white/20 overflow-x-hidden">
+      <div className="relative bg-[#0F0811] text-white antialiased selection:bg-white/20 overflow-x-hidden">
+        <RippleEffect color={`${colors.accentHex}15`} />
         <AnimatePresence mode="wait">
           {phase === "loading" && <LoadingScreen key="loading" theme={theme} />}
           {phase === "countdown" && (
